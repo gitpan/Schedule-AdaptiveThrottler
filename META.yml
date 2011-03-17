@@ -1,7 +1,7 @@
 --- #YAML:1.0
 name:               Schedule-AdaptiveThrottler
-version:            0.02
-abstract:           Limit resource use, according to arbitrary parameters, using a
+version:            0.03
+abstract:           Throttle just about anything with ease
 author:
     - David Morel <david.morel@amakuru.net>
 license:            perl

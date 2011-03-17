@@ -18,7 +18,9 @@ plan skip_all => $error if $error;
 
 plan tests => 4;
 
-ok(Schedule::AdaptiveThrottler->set_client($memcached_client), "Set the memcached client");
+my $sat;
+ok( $sat = Schedule::AdaptiveThrottler->new( memcached_client => $memcached_client ),
+    "Create the object" );
 
 # don't remember which comes first in the key (and too lazy to check now), so
 # make sure any one of the parts goes over the 250 characters threshold
@@ -48,8 +50,8 @@ my $test_scheme_2 = { all => {
 
 $| = 1;
 
-is((Schedule::AdaptiveThrottler->authorize($test_scheme))[0], SCHED_ADAPTHROTTLE_AUTHORIZED, "Long key, authorized");
-is((Schedule::AdaptiveThrottler->authorize($test_scheme))[0], SCHED_ADAPTHROTTLE_BLOCKED, "Long key, blocked");
+is(($sat->authorize($test_scheme))[0], SCHED_ADAPTHROTTLE_AUTHORIZED, "Long key, authorized");
+is(($sat->authorize($test_scheme))[0], SCHED_ADAPTHROTTLE_BLOCKED, "Long key, blocked");
 
 # should be no collision, because of md5sum for long keys
-is((Schedule::AdaptiveThrottler->authorize($test_scheme_2))[0], SCHED_ADAPTHROTTLE_AUTHORIZED, "Long key, no collision, authorized");
+is(($sat->authorize($test_scheme_2))[0], SCHED_ADAPTHROTTLE_AUTHORIZED, "Long key, no collision, authorized");
