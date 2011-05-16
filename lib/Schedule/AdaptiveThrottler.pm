@@ -3,7 +3,7 @@ package Schedule::AdaptiveThrottler;
 use warnings;
 use strict;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 our $DEBUG   = 0;
 our $QUIET   = 0;
 

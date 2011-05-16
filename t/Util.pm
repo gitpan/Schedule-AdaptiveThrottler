@@ -27,16 +27,11 @@ sub get_test_memcached_client {
 
 package Cache::MockMemcached;
 
-use DB_File;
 use Storable qw(freeze thaw);
 
 sub new {
     my $class = shift;
-    my $self = bless {}, $class;
-
-    # create in-memory DB
-    tie %{ $self->{db} }, "DB_File", undef, O_RDWR | O_CREAT, 0666, $DB_HASH
-        or die "Cannot create $class in-memory DB\n";
+    my $self = bless { db => {} }, $class;
     return $self;
 }
 

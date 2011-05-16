@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Schedule-AdaptiveThrottler
-version:            0.04
+version:            0.05
 abstract:           Throttle just about anything with ease
 author:
     - David Morel <david.morel@amakuru.net>
@@ -11,7 +11,8 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
-    Test::More:  0
+    Digest::MD5:  0
+    Test::More:   0
 no_index:
     directory:
         - t
