@@ -3,7 +3,7 @@ package Schedule::AdaptiveThrottler;
 use warnings;
 use strict;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 our $DEBUG   = 0;
 our $QUIET   = 0;
 
@@ -92,7 +92,7 @@ sub authorize {
             # Check the parameters
 
             for my $condition_params ( values %conditions ) {
-                for my $condition_param_key qw(max ttl message value) {
+                for my $condition_param_key (qw{max ttl message value}) {
 
                     # message & value are strings (or just anything for 'value'), the rest are integers
                     die
@@ -245,13 +245,15 @@ sub authorize {
 
 __END__
 
+=encoding utf-8
+
 =head1 NAME
 
 Schedule::AdaptiveThrottler - Throttle just about anything with ease
 
 =head1 VERSION
 
-Version 0.04
+Version 0.06
 
 =head1 SYNOPSIS
 

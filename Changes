@@ -1,5 +1,9 @@
 Revision history for Schedule::AdaptiveThrottler
 
+0.06    2012-10-09
+        No Storable in mock memcached object
+        Fixed doc and version
+        
 0.05    2011-05-16
         Removed dependency on DB_File
         Added Digest::MD5 to dependencies

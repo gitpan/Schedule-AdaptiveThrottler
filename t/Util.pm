@@ -27,8 +27,6 @@ sub get_test_memcached_client {
 
 package Cache::MockMemcached;
 
-use Storable qw(freeze thaw);
-
 sub new {
     my $class = shift;
     my $self = bless { db => {} }, $class;
@@ -40,7 +38,7 @@ sub get {
     my ($key) = @_;
     die "Undef key" if !defined $key;
     my $value = $self->{db}{$key} or return;
-    $value = thaw($value);
+    $value = $value;
     if ( $value->[1] < time ) {
         delete $self->{db}{$key};
         return;
@@ -53,7 +51,7 @@ sub set {
     my ( $key, $value, $ttl ) = @_;
     $ttl ||= 0;
     die "Undef key or value\n" if !defined $key || !defined $value;
-    $self->{db}{$key} = freeze [ $value, $ttl > 0 ? time + $ttl : time + 999_999_999 ];
+    $self->{db}{$key} = [ $value, $ttl > 0 ? time + $ttl : time + 999_999_999 ];
     return 1;
 }
 
